@@ -18,6 +18,24 @@ func doubleReturn(a int) (c, d int) {
 	return a, a * 2
 }
 
+func numeroPar(num int) bool {
+	if num%2 == 0 {
+		return true
+	} else {
+		return false
+	}
+}
+
+func userPassword(userInput string, passwordInput int) bool {
+	user := "Edilberto"
+	password := 1234
+	if user == userInput && password == passwordInput {
+		return true
+	} else {
+		return false
+	}
+}
+
 func main() {
 	// Declaración de constantes
 	const pi float64 = 3.14
@@ -80,4 +98,92 @@ func main() {
 	value1, _ := doubleReturn(2)
 
 	fmt.Println("value1 y value 2:", value1)
+
+	// For condicional
+	for i := 0; i <= 10; i++ {
+		fmt.Println(i)
+	}
+
+	fmt.Printf("\n")
+
+	// For while
+	counter := 0
+	for counter < 10 {
+		fmt.Println(counter)
+		counter++
+	}
+
+	// For forever
+	// counterForever := 0
+	// for {
+	// 	fmt.Println(counterForever)
+	// 	counterForever++
+	// }
+
+	// For decremental
+	// for i := 10; i >= 1; i-- {
+	// 	fmt.Println(i)
+	// }
+
+	valor1 := 1
+	valor2 := 2
+
+	if valor1 == 1 {
+		fmt.Println("es 1")
+	} else {
+		fmt.Println("No es 1")
+	}
+
+	// With and
+	if valor1 == 1 && valor2 == 2 {
+		fmt.Println("es verdad")
+	}
+
+	// With or
+	if valor1 == 0 || valor2 == 2 {
+		fmt.Println("Es verdad, OR")
+	}
+
+	fmt.Println(numeroPar(3))
+	fmt.Println(userPassword("Edi", 123))
+
+	// Switch
+	switch modulo := 4 % 2; modulo {
+	case 0:
+		fmt.Println("es par")
+	default:
+		fmt.Println("es impar")
+	}
+
+	// Switch sin condicion
+	value6 := 100
+	switch {
+	case value6 > 100:
+		fmt.Println("es mayor a 100")
+	case value6 < 0:
+		fmt.Println("es menor a 0")
+	default:
+		fmt.Println("No condicion")
+	}
+
+	// Defer ejecuta la ultima linea de codigo de la funcon
+	defer fmt.Println("Hola")
+	fmt.Println("Mundo")
+
+	// continue y break
+	for i := 0; i < 10; i++ {
+		fmt.Println(i)
+		//continue
+		if i == 2 {
+			fmt.Println("Es 2")
+			continue
+			//break
+		}
+
+		//break
+		if i == 8 {
+			fmt.Println("Break")
+			break
+		}
+	}
 }
