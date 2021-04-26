@@ -1,7 +1,7 @@
 package main
 
 import (
-	pk "curso_golang_platzi/src/mypackage"
+	"curso_golang_platzi/src/mypackage"
 	"fmt"
 )
 
@@ -324,10 +324,10 @@ func main() {
 	// fmt.Println(otherCar.brand)
 	// fmt.Println(otherCar.year)
 
-	var myCar pk.CarPublic
+	var myCar mypackage.CarPublic
 	myCar.Brand = "Ferrari"
 	myCar.Year = 2020
 	fmt.Println(myCar)
 
-	pk.PrintMessage("Hola platzi")
+	mypackage.PrintMessage("Hola platzi")
 }
