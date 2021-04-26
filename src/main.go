@@ -1,7 +1,6 @@
 package main
 
 import (
-	"curso_golang_platzi/src/mypackage"
 	"fmt"
 )
 
@@ -293,6 +292,20 @@ type car struct {
 	year  int
 }
 
+type pc struct {
+	ram   int
+	disk  int
+	brand string
+}
+
+func (myPC pc) pink() {
+	fmt.Println(myPC.brand, "Pong")
+}
+
+func (myPC *pc) duplicateRAM() {
+	myPC.ram = myPC.ram * 2
+}
+
 func main() {
 	// primeraLineaCodigo()
 	// varConstZeroval()
@@ -324,10 +337,45 @@ func main() {
 	// fmt.Println(otherCar.brand)
 	// fmt.Println(otherCar.year)
 
-	var myCar mypackage.CarPublic
-	myCar.Brand = "Ferrari"
-	myCar.Year = 2020
-	fmt.Println(myCar)
+	// Structs
+	// var myCar mypackage.CarPublic
+	// myCar.Brand = "Ferrari"
+	// myCar.Year = 2020
+	// fmt.Println(myCar)
 
-	mypackage.PrintMessage("Hola platzi")
+	// mypackage.PrintMessage("Hola platzi")
+
+	// ---------Punteros---------
+	// a := 50
+	// b := &a
+
+	// fmt.Println(b)
+	// fmt.Println(*b)
+
+	// *b = 100
+
+	// fmt.Println(a)
+
+	// myPC := pc{ram: 16, disk: 200, brand: "msi"}
+
+	// fmt.Println(myPC)
+
+	// myPC.pink()
+
+	// fmt.Println(myPC)
+	// myPC.duplicateRAM()
+
+	// fmt.Println(myPC)
+	// myPC.duplicateRAM()
+
+	// fmt.Println(myPC)
+
+	// -------Ejemplo punteros-------
+	// myPC := mypackage.New(16, 1000, "Dell")
+
+	// fmt.Println(myPC)
+
+	// myPC.DuuplicateRAM()
+
+	// fmt.Println(myPC)
 }
