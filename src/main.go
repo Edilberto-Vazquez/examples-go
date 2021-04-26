@@ -515,6 +515,6 @@ func main() {
 	// fmt.Println(otherCar.year)
 
 	var myCar mypackage.CarPublic
-	myCar.Brand = "Ferrari"
+	myCar.Year = 12
 	fmt.Println(myCar)
 }
