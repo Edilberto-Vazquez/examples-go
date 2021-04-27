@@ -306,6 +306,52 @@ func (myPC *pc) duplicateRAM() {
 	myPC.ram = myPC.ram * 2
 }
 
+func (myPC pc) String() string {
+	return fmt.Sprintf("Tengo %d GB RAM, %d GB Disco y es una %s:", myPC.ram, myPC.disk, myPC.brand)
+}
+
+//-------interface------
+
+type cuadrado struct {
+	base float64
+}
+
+func (c cuadrado) area() float64 {
+	return c.base * c.base
+}
+
+type rectangulo struct {
+	base   float64
+	altura float64
+}
+
+func (r rectangulo) area() float64 {
+	return r.base * r.altura
+}
+
+type figuras2D interface {
+	area() float64
+}
+
+func calcular(f figuras2D) {
+	fmt.Println("area:", f.area())
+}
+
+// func say(text string, wg *sync.WaitGroup) {
+// 	defer wg.Done()
+// 	fmt.Println(text)
+// }
+
+func say(text string, c chan<- string) {
+	c <- text
+
+	//text = <- c
+}
+
+func message(text string, c chan string) {
+	c <- text
+}
+
 func main() {
 	// primeraLineaCodigo()
 	// varConstZeroval()
@@ -378,4 +424,74 @@ func main() {
 	// myPC.DuuplicateRAM()
 
 	// fmt.Println(myPC)
+
+	// myPC := pc{ram: 16, disk: 1000, brand: "Dell"}
+
+	// fmt.Println(myPC)
+
+	// interfaces
+	// myCuadrado := cuadrado{base: 2}
+	// myRectangulo := rectangulo{base: 2, altura: 4}
+
+	// calcular(myCuadrado)
+	// calcular(myRectangulo)
+
+	// Lista interfaces
+	// myInterface := []interface{}{"hola", 12, 4.90}
+	// fmt.Println(myInterface)
+
+	//----------go ruotines waitgroup----------
+	// var wg sync.WaitGroup
+
+	// fmt.Println("Hello")
+	// wg.Add(1)
+	// go say("world", &wg)
+
+	// wg.Wait()
+
+	// go func(text string) {
+	// 	println(text)
+	// }("Adios")
+
+	// time.Sleep(time.Second * 1) // no es eficiente agregar tiempos de espera
+
+	// ---------chanels---------
+	// c := make(chan string, 1)
+
+	// fmt.Println("hello")
+
+	// go say("Bye", c)
+
+	// fmt.Println(<-c)
+
+	c := make(chan string, 2)
+	c <- "mensaje1"
+	c <- "mensaje2"
+
+	fmt.Println(len(c), cap(c))
+
+	// range y close
+	close(c)
+
+	// c <- "mensaje3"
+
+	for message := range c {
+		println(message)
+	}
+
+	// Select
+	email1 := make(chan string)
+	email2 := make(chan string)
+
+	go message("mensaje", email1)
+	go message("mensaje", email2)
+
+	for i := 0; i < 2; i++ {
+		select {
+		case m1 := <-email1:
+			fmt.Println("email recibido de email1", m1)
+		case m2 := <-email2:
+			fmt.Println("email recibido de email2", m2)
+		}
+	}
 }
